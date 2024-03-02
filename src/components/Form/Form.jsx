@@ -2,21 +2,29 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BiMailSend } from 'react-icons/bi';
 import styles from './Form.module.css';
+import { useAddCommentMutation } from '../../redux/commentApi';
+
+const INITIAL_STATE = {
+  author: '',
+  content: '',
+};
 
 export const Form = () => {
-  const [author, setAuthor] = useState('');
-  const [content, setContent] = useState('');
+  // const [author, setAuthor] = useState('');
+  // const [content, setContent] = useState('');
+  const [state, setState] = useState(INITIAL_STATE);
 
-  const onHandleChange = (e) => {
+  const [addComment, { isLoading }] = useAddCommentMutation();
+
+  const onHandleChange = e => {
     const { name, value } = e.target;
-    console.log(name, value);
+    setState({ ...state, [name]: value });
   };
 
-  const onHandleSubmit = (e) => {
+  const onHandleSubmit = e => {
     e.preventDefault();
-
-    setAuthor('');
-    setContent('');
+    addComment(state);
+    setState(INITIAL_STATE);
   };
 
   return (
@@ -25,10 +33,10 @@ export const Form = () => {
         <label className={styles.label}>
           <span className={styles.labelName}>Full name</span>
           <input
-            type='text'
-            name='name'
+            type="text"
+            name="author"
             className={styles.input}
-            value={author}
+            value={state.author}
             onChange={onHandleChange}
           />
         </label>
@@ -37,16 +45,16 @@ export const Form = () => {
           <span className={styles.labelName}>Your comment</span>
           <textarea
             className={styles.input}
-            name='text'
-            rows='5'
-            value={content}
+            name="content"
+            rows="5"
+            value={state.content}
             onChange={onHandleChange}
           ></textarea>
         </label>
 
-        <button className={styles.formBtn}>
+        <button className={styles.formBtn} disabled={isLoading}>
           <BiMailSend className={styles.icon} />
-          Send
+          {isLoading ? '...Sending' : 'Send'}
         </button>
       </form>
     </div>

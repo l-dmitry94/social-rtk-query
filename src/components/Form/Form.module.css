@@ -19,7 +19,7 @@
 }
 
 .formBtn {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-md max-w-[140px] transition-colors shadow h-10 leading-5 tracking-wide text-base;
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-25 text-white font-medium rounded-md max-w-[140px] transition-colors shadow h-10 leading-5 tracking-wide text-base;
 }
 
 .icon {
