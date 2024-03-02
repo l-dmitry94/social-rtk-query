@@ -1,5 +1,5 @@
 .button {
-  @apply relative !bg-gray-100 text-white p-2 border shadow-sm rounded-full text-sm uppercase font-semibold transition-colors outline outline-offset-0 focus:outline-2 focus:outline-blue-500;
+  @apply relative !bg-gray-100 text-white p-2 border shadow-sm disabled:opacity-25 rounded-full text-sm uppercase font-semibold transition-colors outline outline-offset-0 focus:outline-2 focus:outline-blue-500;
 }
 
 .counter {
