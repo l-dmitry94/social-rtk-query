@@ -21,7 +21,7 @@ export const Comments = () => {
         filteredComments.map(comment => (
           <Comment key={comment.id} {...comment} />
         ))}
-    </Grid>
+    </Grid>     
   );
 };
 
